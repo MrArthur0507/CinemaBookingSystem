@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace CinemaBookingSystem.Core.Entities
 {
-    public class Room : BaseEntity
+    public class Movie : BaseEntity
     {
+        public string Title { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
 
-        public string RoomName { get; set; }
-
-        public Guid CinemaLocationId { get; set; }
-        public CinemaLocation CinemaLocation { get; set; }
-
-        public ICollection<Seat> Seats { get; set; }
         public ICollection<Projection> Projections { get; set; }
     }
 }

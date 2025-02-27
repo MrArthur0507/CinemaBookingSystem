@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaBookingSystem.Application\CinemaBookingSystem.Application.csproj" />
+    <ProjectReference Include="..\CinemaBookingSystem.Core\CinemaBookingSystem.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DatabaseServices\" />
+  </ItemGroup>
+
 </Project>
