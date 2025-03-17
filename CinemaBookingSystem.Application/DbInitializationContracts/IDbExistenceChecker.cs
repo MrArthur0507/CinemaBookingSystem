@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CinemaBookingSystem.Application.DbInitializationContracts
 {
-    public interface IDbCreationQuery
+    public interface IDbExistenceChecker
     {
-        public bool ExecuteCreationQuery();
-
+        public bool CheckDatabaseExists(string connectionString, string databaseName);
     }
 }
