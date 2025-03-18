@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CinemaBookingSystem.Infrastructure.DbInitImplementations.Queries.MsSql
 {
-    public class CinemaLocationQueries
+    public static class CinemaLocationQueries
     {
         public const string Insert = @"INSERT INTO CinemaLocations (Id, City, CinemaAddress) VALUES (@Id, @City, @CinemaAddress);";
 
