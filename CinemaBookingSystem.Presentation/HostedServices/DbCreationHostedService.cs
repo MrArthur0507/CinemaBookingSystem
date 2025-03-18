@@ -7,16 +7,20 @@ namespace CinemaBookingSystem.Presentation.HostedServices
     {
         private readonly IDbExistenceChecker _dbExistenceChecker;
         private readonly IConfiguration _configuration;
-        public DbCreationHostedService(IDbExistenceChecker dbExistenceChecker, IConfiguration configuration)
+        private readonly IDbInitializer _dbInitializer;
+        public DbCreationHostedService(IDbExistenceChecker dbExistenceChecker, IConfiguration configuration, IDbInitializer dbInitializer)
         {
             _dbExistenceChecker = dbExistenceChecker;
             _configuration = configuration;
-
+            _dbInitializer = dbInitializer;
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
             string connectionString = _configuration.GetConnectionString("MsSql");
-            Console.WriteLine(_dbExistenceChecker.CheckDatabaseExists(connectionString, "CinemaManagement"));
+            if (!_dbExistenceChecker.CheckDatabaseExists(connectionString, "CinemaManagement"))
+            {
+                _dbInitializer.InitializeDatabase(connectionString, _configuration["SqlScripts:CreateMSSqlDatabase"]);
+            }
             return Task.CompletedTask;
         }
 

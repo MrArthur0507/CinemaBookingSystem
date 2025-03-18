@@ -13,6 +13,7 @@ namespace CinemaBookingSystem.Presentation.ExtensionMethods
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<IDbExistenceChecker, MSSqlExistenceChecker>();
+            builder.Services.AddSingleton<IDbInitializer, MsSqlDbInitializer>();
             builder.Services.AddHostedService<DbCreationHostedService>();
         }
 
