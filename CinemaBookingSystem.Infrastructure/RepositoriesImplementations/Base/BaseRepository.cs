@@ -1,37 +1,25 @@
-﻿using CinemaBookingSystem.Application.Contracts.Repositories;
-using Dapper;
-using Microsoft.Data.SqlClient;
+﻿using CinemaBookingSystem.Application.Contracts.Repositories.Base;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base
 {
-    public abstract class BaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly IDbConnection _dbConnection;
+        protected readonly IQueryExecutor<T> _queryExecutor;
 
-        public BaseRepository(string connectionString)
+        public BaseRepository(IQueryExecutor<T> dapperRepository)
         {
-            _dbConnection = new SqlConnection(connectionString);
+            _queryExecutor = dapperRepository;
         }
 
-        public async Task<T?> GetByIdAsync(string query, Guid id)
-        {
-            return await _dbConnection.QueryFirstOrDefaultAsync<T>(query, new { Id = id });
-        }
-
-        public async Task<IEnumerable<T>> GetAllAsync(string query)
-        {
-            return await _dbConnection.QueryAsync<T>(query);
-        }
-
-        public async Task<int> ExecuteAsync(string query, object paramaters)
-        {
-            return await _dbConnection.ExecuteAsync(query, paramaters);
-        }
+        public abstract Task<T?> GetByIdAsync(Guid id);
+        public abstract Task<IEnumerable<T>> GetAllAsync();
+        public abstract Task<int> AddAsync(T entity);
+        public abstract Task<int> UpdateAsync(T entity);
+        public abstract Task<int> DeleteAsync(Guid id);
     }
 }
