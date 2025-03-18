@@ -16,7 +16,7 @@ namespace CinemaBookingSystem.Presentation.HostedServices
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            string connectionString = _configuration.GetConnectionString("MsSql");
+            string connectionString = _configuration.GetConnectionString("Master");
             if (!_dbExistenceChecker.CheckDatabaseExists(connectionString, "CinemaManagement"))
             {
                 _dbInitializer.InitializeDatabase(connectionString, _configuration["SqlScripts:CreateMSSqlDatabase"]);

@@ -1,6 +1,12 @@
-﻿using CinemaBookingSystem.Application.DbInitializationContracts;
+﻿using CinemaBookingSystem.Application.Contracts.Repositories;
+using CinemaBookingSystem.Application.Contracts.Repositories.Base;
+using CinemaBookingSystem.Application.DbInitializationContracts;
 using CinemaBookingSystem.Infrastructure.DbInitImplementations;
+using CinemaBookingSystem.Infrastructure.RepositoriesImplementations;
+using CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base;
 using CinemaBookingSystem.Presentation.HostedServices;
+using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Runtime.CompilerServices;
 
 namespace CinemaBookingSystem.Presentation.ExtensionMethods
@@ -14,7 +20,11 @@ namespace CinemaBookingSystem.Presentation.ExtensionMethods
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<IDbExistenceChecker, MSSqlExistenceChecker>();
             builder.Services.AddSingleton<IDbInitializer, MsSqlDbInitializer>();
+            var connectionString = builder.Configuration.GetConnectionString("MsSql");
+            builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(connectionString));
+            builder.Services.AddScoped(typeof(IQueryExecutor<>), typeof(QueryExecutor<>));
             builder.Services.AddHostedService<DbCreationHostedService>();
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
         }
 
         public static void ConfigurePipeline(this WebApplication app)
