@@ -11,9 +11,9 @@ namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base
     {
         protected readonly IQueryExecutor<T> _queryExecutor;
 
-        public BaseRepository(IQueryExecutor<T> dapperRepository)
+        public BaseRepository(IQueryExecutor<T> queryExecutor)
         {
-            _queryExecutor = dapperRepository;
+            _queryExecutor = queryExecutor;
         }
 
         public abstract Task<T?> GetByIdAsync(Guid id);
