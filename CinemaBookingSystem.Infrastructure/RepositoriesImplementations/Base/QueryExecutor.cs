@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base
 {
-    public  class QueryExecutor<T> : IQueryExecutor<T> where T : class
+    public class QueryExecutor<T> : IQueryExecutor<T> where T : class
     {
         private readonly IDbConnection _dbConnection;
 
