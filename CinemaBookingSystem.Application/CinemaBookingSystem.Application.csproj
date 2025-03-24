@@ -10,8 +10,4 @@
     <ProjectReference Include="..\CinemaBookingSystem.Core\CinemaBookingSystem.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
 </Project>
