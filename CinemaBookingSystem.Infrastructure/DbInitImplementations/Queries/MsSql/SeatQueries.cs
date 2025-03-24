@@ -8,6 +8,8 @@ namespace CinemaBookingSystem.Infrastructure.DbInitImplementations.Queries.MsSql
 {
     public static class SeatQueries
     {
+        public const string GetAll = @"SELECT * FROM Seats";
+
         public const string Insert = @"INSERT INTO Seats (Id, RoomId, SeatType, SeatRow, SeatColumn) VALUES (@Id, @RoomId, @SeatType, @SeatRow, @SeatColumn);";
 
         public const string GetById = @"SELECT * FROM Seats WHERE Id = @Id;";
