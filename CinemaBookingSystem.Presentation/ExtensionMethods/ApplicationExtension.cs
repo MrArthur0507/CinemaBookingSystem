@@ -1,6 +1,10 @@
-﻿using CinemaBookingSystem.Application.Contracts.Repositories;
+﻿using CinemaBookingSystem.Application.Contracts.Mapping;
+using CinemaBookingSystem.Application.Contracts.Repositories;
 using CinemaBookingSystem.Application.Contracts.Repositories.Base;
+using CinemaBookingSystem.Application.Contracts.Services.Crud;
 using CinemaBookingSystem.Application.DbInitializationContracts;
+using CinemaBookingSystem.Application.Implementations.Mapping;
+using CinemaBookingSystem.Application.Implementations.Services;
 using CinemaBookingSystem.Infrastructure.DbInitImplementations;
 using CinemaBookingSystem.Infrastructure.RepositoriesImplementations;
 using CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base;
@@ -25,6 +29,12 @@ namespace CinemaBookingSystem.Presentation.ExtensionMethods
             builder.Services.AddScoped(typeof(IQueryExecutor<>), typeof(QueryExecutor<>));
             builder.Services.AddHostedService<DbCreationHostedService>();
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddScoped<IMapperAdapter, AutoMapperAdapter>();
+
+            //Movies
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddScoped<IMovieService, MovieService>();
         }
 
         public static void ConfigurePipeline(this WebApplication app)
