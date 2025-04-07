@@ -40,6 +40,10 @@ namespace CinemaBookingSystem.Presentation.ExtensionMethods
             //CinemaLocations
             builder.Services.AddScoped<ICinemaLocationRepository, CinemaLocationRepository>();
             builder.Services.AddScoped<ICinemaLocationService, CinemaLocationService>();
+
+            //Room
+            builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+            builder.Services.AddScoped<IRoomService, RoomService>();
         }
 
         public static void ConfigurePipeline(this WebApplication app)
