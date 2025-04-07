@@ -37,20 +37,20 @@ namespace CinemaBookingSystem.Application.Implementations.Services
         {
             var cinemaLocation = _mapperAdapter.Map<CreateCinemaLocationDto, CinemaLocation>(cinemaLocationDto);
             int result = await _repository.AddAsync(cinemaLocation);
-            return result == 1 ? true : false;
+            return result == 1;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
             int result = await _repository.DeleteAsync(id);
-            return result == 1 ? true : false;
+            return result == 1;
         }
 
         public async Task<bool> UpdateAsync(UpdateCinemaLocationDto cinemaLocationDto)
         {
             var cinemaLocation = _mapperAdapter.Map<UpdateCinemaLocationDto, CinemaLocation>(cinemaLocationDto);
             int result = await _repository.UpdateAsync(cinemaLocation);
-            return result == 1 ? true : false;
+            return result == 1;
         }
     }
 }

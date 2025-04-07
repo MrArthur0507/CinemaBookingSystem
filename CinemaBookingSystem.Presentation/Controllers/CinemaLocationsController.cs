@@ -66,5 +66,7 @@ namespace CinemaBookingSystem.Presentation.Controllers
 
             return NoContent();
         }
+
+
     }
 }
