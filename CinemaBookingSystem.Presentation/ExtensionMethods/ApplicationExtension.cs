@@ -5,6 +5,7 @@ using CinemaBookingSystem.Application.Contracts.Services.Crud;
 using CinemaBookingSystem.Application.DbInitializationContracts;
 using CinemaBookingSystem.Application.Implementations.Mapping;
 using CinemaBookingSystem.Application.Implementations.Services;
+using CinemaBookingSystem.Core.Entities;
 using CinemaBookingSystem.Infrastructure.DbInitImplementations;
 using CinemaBookingSystem.Infrastructure.RepositoriesImplementations;
 using CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base;
@@ -35,6 +36,10 @@ namespace CinemaBookingSystem.Presentation.ExtensionMethods
             //Movies
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IMovieService, MovieService>();
+
+            //CinemaLocations
+            builder.Services.AddScoped<ICinemaLocationRepository, CinemaLocationRepository>();
+            builder.Services.AddScoped<ICinemaLocationService, CinemaLocationService>();
         }
 
         public static void ConfigurePipeline(this WebApplication app)
