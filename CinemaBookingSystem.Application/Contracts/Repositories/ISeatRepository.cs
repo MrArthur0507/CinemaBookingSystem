@@ -10,5 +10,7 @@ namespace CinemaBookingSystem.Application.Contracts.Repositories
 {
     public interface ISeatRepository : IBaseRepository<Seat>
     {
+        public Task<IEnumerable<Seat>> GetAllSeatsForProjectionAsync(Guid projectionId);
+
     }
 }

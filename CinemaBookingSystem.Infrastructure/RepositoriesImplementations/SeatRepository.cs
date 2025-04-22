@@ -39,5 +39,9 @@ namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations
             return await _queryExecutor.ExecuteAsync(SeatQueries.Delete, id);
         }
 
+        public async Task<IEnumerable<Seat>> GetAllSeatsForProjectionAsync(Guid projectionId)
+        {
+            return await _queryExecutor.GetAllAsync(SeatQueries.GetAllForProjection, new { Id =  projectionId });
+        }
     }
 }

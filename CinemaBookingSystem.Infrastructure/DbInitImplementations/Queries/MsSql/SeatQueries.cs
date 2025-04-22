@@ -19,5 +19,7 @@ namespace CinemaBookingSystem.Infrastructure.DbInitImplementations.Queries.MsSql
         public const string Update = @"UPDATE Seats SET SeatType = @SeatType, SeatRow = @SeatRow, SeatColumn = @SeatColumn WHERE Id = @Id;";
 
         public const string Delete = @"DELETE FROM Seats WHERE Id = @Id;";
+
+        public const string GetAllForProjection = @"SELECT s.Id, s.SeatRow, s.SeatColumn, s.SeatType FROM Seats s JOIN Projections p ON s.RoomId = p.RoomId WHERE p.Id = @Id;";
     }
 }

@@ -30,9 +30,19 @@ namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations.Base
             return await _dbConnection.QueryAsync<T>(query);
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync(string query, object parameters)
+        {
+            return await _dbConnection.QueryAsync<T>(query, parameters);
+        }
+
         public async Task<int> ExecuteAsync(string query, object paramaters)
         {
-            return await _dbConnection.ExecuteAsync(query, paramaters);
+            return await _dbConnection.ExecuteAsync(query, paramaters);   
+        }
+
+        public async Task<bool> ExecuteTransaction(Func<IDbConnection, Task<bool>> transactionFunction)
+        {
+            return await transactionFunction.Invoke(_dbConnection);
         }
     }
 }

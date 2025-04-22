@@ -32,7 +32,7 @@ namespace CinemaBookingSystem.Infrastructure.RepositoriesImplementations
 
         public async override Task<int> DeleteAsync(Guid id)
         {
-            return await _queryExecutor.ExecuteAsync(ProjectionQueries.Delete, id);
+            return await _queryExecutor.ExecuteAsync(ProjectionQueries.Delete, new {Id = id});
         }
 
         public override async Task<int> UpdateAsync(Projection entity)

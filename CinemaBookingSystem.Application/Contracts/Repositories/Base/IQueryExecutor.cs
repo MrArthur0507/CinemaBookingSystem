@@ -10,6 +10,8 @@ namespace CinemaBookingSystem.Application.Contracts.Repositories.Base
     {
         Task<T?> GetByIdAsync(string query, Guid id);
         Task<IEnumerable<T>> GetAllAsync(string query);
+
+        Task<IEnumerable<T>> GetAllAsync(string query, object parameters);
         Task<int> ExecuteAsync(string query, object parameters);
     }
 }
